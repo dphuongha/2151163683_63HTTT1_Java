@@ -1,29 +1,39 @@
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Employee {
-    private String id, name, department, code;
+public class Employee implements Comparable<Employee> {
+    private int id;
+    private String name;
     private int age;
-    private double salaryRate;
+    private String department;
+    private int code;
+    private double salary_rate;
 
-    public Employee(String id, String name, String department, String code, int age, double salaryRate) {
+    //Constructor: Khoi tao
+
+    public Employee() {
+    }
+
+    public Employee(int id) {
+        this.id = id;
+    }
+
+    public Employee(int id, String name, int age, String department, int code, double salary_rate) {
         this.id = id;
         this.name = name;
+        this.age = age;
         this.department = department;
         this.code = code;
-        this.age = age;
-        this.salaryRate = salaryRate;
+        this.salary_rate = salary_rate;
     }
 
-    public Employee(String id) {
-        this.id = id;
-    }
+    //get, set
 
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,22 +45,6 @@ public class Employee {
         this.name = name;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public int getAge() {
         return age;
     }
@@ -59,24 +53,46 @@ public class Employee {
         this.age = age;
     }
 
-    public double getSalaryRate() {
-        return salaryRate;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setSalaryRate(double salaryRate) {
-        this.salaryRate = salaryRate;
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public double getSalary_rate() {
+        return salary_rate;
+    }
+
+    public void setSalary_rate(double salary_rate) {
+        this.salary_rate = salary_rate;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", department='" + department + '\'' +
-                ", code='" + code + '\'' +
-                ", age=" + age +
-                ", salaryRate=" + salaryRate +
-                '}';
+        return id + "\t" + name + "\t" + age + "\t" + department + "\t" +  code + "\t" + salary_rate ;
+    }
+
+
+        @Override
+    public int compareTo(Employee o) {
+        //Sap xep theo gia
+        if(this.salary_rate > o.salary_rate ){
+            return  -1;
+        }
+        if (this.salary_rate < o.salary_rate) {
+            return  1;
+        }
+        return 0;
     }
 
     @Override
@@ -87,8 +103,8 @@ public class Employee {
         return Objects.equals(id, employee.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, department, code, age, salaryRate);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, age, department, code, salary_rate);
+//    }
 }
